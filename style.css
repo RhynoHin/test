@@ -1,0 +1,252 @@
+:root {
+  color-scheme: dark;
+  --void: #050607;
+  --ink: #e9fff8;
+  --muted: #8fb6aa;
+  --panel: rgba(4, 10, 10, 0.88);
+  --line: #31f6b2;
+  --hot: #ff315f;
+  --warn: #ffd24a;
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  background: #020303;
+  color: var(--ink);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+}
+
+body {
+  display: grid;
+  place-items: center;
+  min-height: 100svh;
+}
+
+#game-shell {
+  position: relative;
+  width: min(100vw, 100svh * 1.777);
+  height: min(100svh, 100vw / 1.777);
+  min-width: 320px;
+  min-height: 180px;
+  overflow: hidden;
+  background: var(--void);
+  isolation: isolate;
+}
+
+#game {
+  display: block;
+  width: 100%;
+  height: 100%;
+  touch-action: none;
+  background: #020303;
+}
+
+.panel {
+  border: 1px solid rgba(49, 246, 178, 0.72);
+  border-radius: 8px;
+  background: var(--panel);
+  box-shadow: 0 0 0 1px rgba(49, 246, 178, 0.18), 0 18px 50px rgba(0, 0, 0, 0.54);
+  backdrop-filter: blur(10px);
+}
+
+#menu-panel,
+#puzzle-panel {
+  position: absolute;
+  left: 50%;
+  top: 8%;
+  width: min(560px, 88%);
+  transform: translateX(-50%);
+  padding: 18px;
+  text-align: center;
+  z-index: 6;
+}
+
+#menu-panel.hidden,
+#puzzle-panel.hidden,
+#prompt.hidden {
+  display: none;
+}
+
+.kicker {
+  margin: 0 0 8px;
+  color: var(--line);
+  font-size: 12px;
+  letter-spacing: 0;
+}
+
+h1,
+h2 {
+  margin: 0 0 10px;
+  color: #ffffff;
+  line-height: 1.08;
+}
+
+h1 {
+  font-size: 34px;
+}
+
+h2 {
+  font-size: 24px;
+}
+
+p {
+  margin: 8px 0;
+  color: #d5eee7;
+  font-size: 15px;
+  line-height: 1.45;
+}
+
+.small {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+button {
+  font: inherit;
+}
+
+#start-btn,
+#close-puzzle,
+#puzzle-options button {
+  min-height: 42px;
+  margin-top: 10px;
+  padding: 10px 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #071c18;
+  color: var(--ink);
+  cursor: pointer;
+}
+
+#start-btn {
+  min-width: 172px;
+  background: #0d4739;
+  font-weight: 800;
+}
+
+#puzzle-options {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 12px;
+}
+
+#puzzle-options button.wrong {
+  border-color: var(--hot);
+  color: #ffdce3;
+}
+
+#hud {
+  position: absolute;
+  left: max(12px, env(safe-area-inset-left));
+  right: max(12px, env(safe-area-inset-right));
+  top: max(10px, env(safe-area-inset-top));
+  z-index: 3;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  pointer-events: none;
+  color: var(--ink);
+  font-size: 13px;
+  text-shadow: 0 0 10px rgba(49, 246, 178, 0.9);
+}
+
+#objective,
+#status,
+#prompt {
+  border: 1px solid rgba(49, 246, 178, 0.48);
+  border-radius: 8px;
+  background: rgba(1, 7, 7, 0.62);
+  padding: 8px 10px;
+}
+
+#prompt {
+  position: absolute;
+  left: 50%;
+  bottom: 86px;
+  transform: translateX(-50%);
+  z-index: 3;
+  width: min(520px, 86%);
+  color: #ffffff;
+  text-align: center;
+  pointer-events: none;
+}
+
+#touch-controls {
+  position: absolute;
+  left: max(10px, env(safe-area-inset-left));
+  right: max(10px, env(safe-area-inset-right));
+  bottom: max(10px, env(safe-area-inset-bottom));
+  z-index: 5;
+  display: grid;
+  grid-template-columns: 58px 58px 58px 58px 1fr 54px 66px;
+  gap: 7px;
+  pointer-events: none;
+}
+
+.ctrl-btn {
+  min-height: 50px;
+  border: 1px solid rgba(49, 246, 178, 0.72);
+  border-radius: 8px;
+  background: rgba(2, 20, 18, 0.82);
+  color: var(--ink);
+  font-size: 13px;
+  font-weight: 800;
+  pointer-events: auto;
+  user-select: none;
+}
+
+.ctrl-btn.action {
+  background: rgba(255, 49, 95, 0.7);
+  border-color: rgba(255, 182, 197, 0.9);
+}
+
+.ctrl-btn:active,
+.ctrl-btn.pressed {
+  background: rgba(49, 246, 178, 0.24);
+  transform: translateY(1px);
+}
+
+@media (max-height: 430px) {
+  #menu-panel,
+  #puzzle-panel {
+    top: 4%;
+    padding: 12px;
+  }
+
+  h1 {
+    font-size: 26px;
+  }
+
+  h2 {
+    font-size: 20px;
+  }
+
+  p {
+    font-size: 12px;
+  }
+
+  #touch-controls {
+    grid-template-columns: 48px 48px 48px 48px 1fr 48px 58px;
+    gap: 5px;
+  }
+
+  .ctrl-btn {
+    min-height: 42px;
+    font-size: 11px;
+  }
+
+  #prompt {
+    bottom: 66px;
+    font-size: 12px;
+  }
+}
