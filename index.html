@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="zh-HK">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>黑箱入侵：404層</title>
+    <link rel="icon" href="data:," />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main id="game-shell" aria-label="黑箱入侵：404層">
+      <canvas id="game" width="960" height="540"></canvas>
+
+      <section id="menu-panel" class="panel">
+        <p class="kicker">3D 黑客解謎驚嚇遊戲</p>
+        <h1>黑箱入侵：404層</h1>
+        <p>
+          你被困喺一層廢棄伺服器迷宮。破解三個黑箱節點，避開監控幽影，
+          喺系統封鎖前搵到出口。
+        </p>
+        <button id="start-btn" type="button">開始入侵</button>
+        <p class="small">iPhone 橫向玩最好。戴耳機會更有氣氛。</p>
+      </section>
+
+      <section id="hud" aria-live="polite">
+        <div id="objective">破解 3 個節點</div>
+        <div id="status">訊號 100% · 節點 0/3</div>
+      </section>
+
+      <section id="prompt" class="hidden"></section>
+
+      <section id="puzzle-panel" class="panel hidden" aria-live="polite">
+        <p class="kicker" id="puzzle-kicker">黑箱節點</p>
+        <h2 id="puzzle-title">節點</h2>
+        <p id="puzzle-copy"></p>
+        <div id="puzzle-options"></div>
+        <button id="close-puzzle" type="button">離開終端</button>
+      </section>
+
+      <nav id="touch-controls" aria-label="遊戲控制">
+        <button class="ctrl-btn" type="button" data-action="turnLeft">轉左</button>
+        <button class="ctrl-btn" type="button" data-action="forward">前進</button>
+        <button class="ctrl-btn" type="button" data-action="turnRight">轉右</button>
+        <button class="ctrl-btn" type="button" data-action="backward">後退</button>
+        <button class="ctrl-btn action" type="button" data-action="interact">破解</button>
+        <button class="ctrl-btn" type="button" data-action="sound">聲</button>
+        <button class="ctrl-btn" type="button" data-action="full">全屏</button>
+      </nav>
+    </main>
+
+    <script src="game.js"></script>
+  </body>
+</html>
